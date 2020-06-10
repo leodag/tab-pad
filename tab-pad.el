@@ -24,8 +24,8 @@
 
 ;;; Commentary:
 
-;; Currently only supports `tab-bar-mode', but supporting `tab-line-mode'
-;; shouldn't be too much work.
+;; Currently only supports `tab-bar-mode', but supporting
+;; `tab-line-mode' shouldn't be too much work.
 
 ;; Usage:
 
@@ -36,13 +36,13 @@
 ;; https://github.com/andreyorst/dotfiles/blob/477525abb7ddf16437b40f3a8cbb02714790bd3c/.config/emacs/README.org#tabline
 
 ;; Some additional wizardry was needed to make it work with tab-bar,
-;; mostly for dealing with the possibility of naming tabs. I needed
-;; a way to save the "given name" (unpadded name) of a tab so it can
-;; be repadded on posterior calls, but any attributes added to a tab
-;; were deleted on tab switch. So I stored it as a text property on
-;; the initial padding. Also, only changing the 'display attribute
-;; does not trigger a redisplay, even after `force-mode-line-update',
-;; so we also need to generate the appropriate amount of spaces with
+;; mostly for dealing with the possibility of naming tabs. I needed a
+;; way to save the "given name" (unpadded name) of a tab so it can be
+;; repadded on posterior calls, but any attributes added to a tab were
+;; deleted on tab switch. So I stored it as a text property on the
+;; initial padding. Also, only changing the 'display attribute does
+;; not trigger a redisplay, even after `force-mode-line-update', so we
+;; also need to generate the appropriate amount of spaces with
 ;; `make-string' so that any changes to the text trigger a redisplay.
 
 ;;; Code:
@@ -106,8 +106,9 @@ buffer's name or stored buffer name."
 ;; to make actual spaces with make-string, since if there is no change in the
 ;; non-propertized text, the bar will not be redrawn on window resize
 (defun tab-pad--pad-name (name width)
-  "Pads NAME to WIDTH, with a minimum of 1 padding character on each side.
-If NAME is too wide, last character is turned into an ellipsis."
+  "Pads NAME to WIDTH, with a minimum of 1 padding character on
+each side.  If NAME is too wide, last character is turned into an
+ellipsis."
   (let ((name-width (length name)))
     (if (> (+ name-width 2) width) ; plus two padding spaces minimum
         (concat (propertize " " 'given-name name)
