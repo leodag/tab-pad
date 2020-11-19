@@ -75,7 +75,7 @@ such as separators and close buttons.")
 (defun tab-pad-bar ()
   "Renames all tabs, padding them. Returns the new name of
 the current tab."
-  (let* ((tabs (or (frame-parameter nil 'tabs) '((current-tab))))
+  (let* ((tabs (or (frame-parameter nil 'tabs) (list (list 'current-tab))))
          (width (/ (frame-inner-width) (frame-char-width)))
          (unpadded-names (mapcar 'tab-pad--bar-get-name tabs))
          (padded-names (tab-pad--pad-names
