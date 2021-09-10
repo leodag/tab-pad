@@ -47,6 +47,8 @@
 
 ;;; Code:
 
+(require 'cl-lib)
+
 
 ;;; Variables
 
