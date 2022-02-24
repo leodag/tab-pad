@@ -54,21 +54,30 @@
 
 (defgroup tab-pad nil
   "Pad Emacs 27's tabs to fill the frame/window"
-  :prefix "tab-pad-")
+  :prefix "tab-pad-"
+  :group 'faces)
 
 (defcustom tab-pad-bar-min-width 20
-  "Minimum width of a tab.")
+  "Minimum width of a tab."
+  :type 'integer
+  :group 'tab-pad)
 
 (defcustom tab-pad-bar-max-width 300
-  "Maximum width of a tab.")
+  "Maximum width of a tab."
+  :type 'integer
+  :group 'tab-pad)
 
 (defcustom tab-pad-bar-fixed-overhead 1
   "Columns to be considered taken by fixed elements, such as starting
-separator or history buttons.")
+separator or history buttons."
+  :type 'integer
+  :group 'tab-pad)
 
 (defcustom tab-pad-bar-per-tab-overhead 1
   "Total extra columns that will be added to each tab, by elements
-such as separators and close buttons.")
+such as separators and close buttons."
+  :type 'integer
+  :group 'tab-pad)
 
 
 ;;; Functions
