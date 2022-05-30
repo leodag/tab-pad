@@ -158,8 +158,10 @@ instead of the length of NAMES."
   (cond
    (tab-pad-bar-mode
     (setq tab-bar-tab-name-function 'tab-pad-bar)
-    (define-advice tab-bar-rename-tab (:after (&rest _r) tab-pad)
-      (tab-pad-bar)))
+    ;; this compiles to a defun, we want it to be known at compile-time
+    (eval-and-compile
+      (define-advice tab-bar-rename-tab (:after (&rest _r) tab-pad)
+        (tab-pad-bar))))
    (t
     (setq tab-bar-tab-name-function 'tab-bar-tab-name-current)
     (advice-remove 'tab-bar-rename-tab 'tab-bar-rename-tab@tab-pad))))
